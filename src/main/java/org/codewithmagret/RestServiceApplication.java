@@ -1,17 +1,29 @@
 package org.codewithmagret;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
-    static void main() {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        IO.println(String.format("Hello and welcome!"));
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            IO.println("i = " + i);
-        }
+/**
+ * Main application class for the RESTful service,
+ * responsible for bootstrapping the Spring Boot application.
+ */
+@SpringBootApplication
+public class RestServiceApplication {
+
+    /**
+     * Default constructor for the RestServiceApplication class.
+     * This constructor is required by Spring Boot to create an instance of the application.
+     */
+    public RestServiceApplication() {
+    }
+
+    /**
+     * The entry point of the application, which starts the Spring Boot context.
+     *
+     * @param args command-line arguments (not used)
+     */
+    public static void main(String[] args) {
+        SpringApplication.run(RestServiceApplication.class, args);
     }
 }
+
