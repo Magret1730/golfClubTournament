@@ -8,6 +8,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Represents the Tournament entity in the application
+ */
 @Entity
 @Table(
         uniqueConstraints = @UniqueConstraint(columnNames = {"startDate", "location"})
