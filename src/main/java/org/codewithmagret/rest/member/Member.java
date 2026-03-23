@@ -1,5 +1,6 @@
 package org.codewithmagret.rest.member;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.codewithmagret.rest.tournament.Tournament;
 
@@ -17,6 +18,9 @@ import java.util.Set;
  * and duration of membership are all required fields that provide essential
  */
 @Entity
+@Table(name = "member", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"email"})
+})
 public class Member {
     /**
      * The unique identifier for the member.
@@ -70,6 +74,7 @@ public class Member {
      * Tournaments the member is participating in.
      * This is the inverse side of the many-to-many relationship.
      */
+    @JsonIgnore
     @ManyToMany(mappedBy = "members")
     private Set<Tournament> tournaments =  new HashSet<>();
 

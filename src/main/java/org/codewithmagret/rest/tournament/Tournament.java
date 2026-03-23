@@ -3,11 +3,15 @@ package org.codewithmagret.rest.tournament;
 import jakarta.persistence.*;
 import org.codewithmagret.rest.member.Member;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @Entity
+@Table(
+        uniqueConstraints = @UniqueConstraint(columnNames = {"startDate", "location"})
+)
 public class Tournament {
     /**
      * ID of each tournament
@@ -19,12 +23,12 @@ public class Tournament {
     /**
      * Start date of tournament
      */
-    private String startDate;
+    private LocalDate startDate;
 
     /**
      * End date of tournament
      */
-    private String endDate;
+    private LocalDate endDate;
 
     /**
      * Location of tournament
@@ -74,7 +78,7 @@ public class Tournament {
      * Gets the start date of tournament
      * @return startDate of the tournament
      */
-    public String getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
@@ -82,7 +86,7 @@ public class Tournament {
      * Sets the startdate of the tournament
      * @param startDate of the tournament
      */
-    public void setStartDate(String startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
@@ -106,7 +110,7 @@ public class Tournament {
      * Gets end date of the tournament
      * @return endDate of the tournament
      */
-    public String getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
@@ -114,7 +118,7 @@ public class Tournament {
      * Sets end date of the tournament
      * @param endDate of the tournament
      */
-    public void setEndDate(String endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 
