@@ -1,0 +1,8 @@
+$kind: http-request
+name: Search Tournaments by Start Date
+method: GET
+url: '{{baseUrl}}/tournaments/search/date'
+order: 8000
+queryParams:
+  - key: startDate
+    value: '2024-06-01'

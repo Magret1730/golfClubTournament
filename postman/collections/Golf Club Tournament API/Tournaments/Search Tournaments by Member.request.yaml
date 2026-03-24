@@ -1,0 +1,5 @@
+$kind: http-request
+name: Search Tournaments by Member
+method: GET
+url: '{{baseUrl}}/tournaments/search/member/{{memberId}}'
+order: 10000

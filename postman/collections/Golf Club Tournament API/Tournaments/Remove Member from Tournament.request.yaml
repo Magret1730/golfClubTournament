@@ -1,0 +1,5 @@
+$kind: http-request
+name: Remove Member from Tournament
+method: DELETE
+url: '{{baseUrl}}/tournaments/{{tournamentId}}/members/{{memberId}}'
+order: 7000

@@ -1,0 +1,6 @@
+$kind: collection
+name: Golf Club Tournament API
+description: REST API for managing golf club members and tournaments. Built with Spring Boot.
+variables:
+  - key: baseUrl
+    value: 'http://localhost:8080'

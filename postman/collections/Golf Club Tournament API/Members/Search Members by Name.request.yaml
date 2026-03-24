@@ -1,0 +1,8 @@
+$kind: http-request
+name: Search Members by Name
+method: GET
+url: '{{baseUrl}}/members/search/name'
+order: 6000
+queryParams:
+  - key: name
+    value: John

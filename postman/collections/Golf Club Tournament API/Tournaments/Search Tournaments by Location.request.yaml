@@ -1,0 +1,8 @@
+$kind: http-request
+name: Search Tournaments by Location
+method: GET
+url: '{{baseUrl}}/tournaments/search/location'
+order: 9000
+queryParams:
+  - key: location
+    value: Pine Valley

@@ -1,0 +1,8 @@
+$kind: http-request
+name: Search Members by Membership Type
+method: GET
+url: '{{baseUrl}}/members/search/type'
+order: 7000
+queryParams:
+  - key: type
+    value: Premium
