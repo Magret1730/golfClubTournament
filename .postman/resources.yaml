@@ -1,0 +1,14 @@
+# Use this workspace to collaborate
+workspace:
+  id: 6066338b-5e08-4294-8076-d55099d2b384
+
+# Each entry here maps a local resource to one or more corresponding objects in Postman Cloud
+cloudResources:
+  collections:
+    ../postman/collections/OpenAPI definition: 49e4780a-663a-484d-b624-b52cad653c52
+
+# All resources in the `postman/` folder are automatically registered in Local View.
+# Point to additional files outside the `postman/` folder to register them individually. Example:
+#localResources:
+#  collections:
+#    - ../tests/E2E Test Collection/

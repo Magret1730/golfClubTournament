@@ -1,0 +1,10 @@
+$kind: http-request
+url: "{{baseUrl}}/tournaments/:tournamentId/members/:memberId"
+method: DELETE
+headers:
+  Accept: "*/*"
+pathVariables:
+  tournamentId: "64"
+  memberId: "64"
+examples: ./.resources/remove Member From Tournament.resources/examples
+order: 2000

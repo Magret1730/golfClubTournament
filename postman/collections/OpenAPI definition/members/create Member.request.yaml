@@ -1,0 +1,21 @@
+$kind: http-request
+name: create Member
+url: "{{baseUrl}}/members"
+method: POST
+headers:
+  Content-Type: application/json
+  Accept: "*/*"
+body:
+  type: json
+  content: |-
+    {
+      "name": "Jane Doe",
+      "address": "123 Golf Lane",
+      "email": "jane.doe@example.com",
+      "membershipType": "Premium",
+      "phoneNumber": "555-1234",
+      "membershipStartDate": "2024-01-01",
+      "membershipDuration": "12 months"
+    }
+examples: ./.resources/create Member.resources/examples
+order: 4000

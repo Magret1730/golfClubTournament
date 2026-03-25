@@ -1,0 +1,9 @@
+$kind: http-request
+url: "{{baseUrl}}/tournaments/search/member/:memberId"
+method: GET
+headers:
+  Accept: "*/*"
+pathVariables:
+  memberId: "64"
+examples: ./.resources/search By Member.resources/examples
+order: 1000

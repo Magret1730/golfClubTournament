@@ -1,0 +1,10 @@
+$kind: http-request
+name: search By Membership Type
+url: "{{baseUrl}}/members/search/type?type=Premium"
+method: GET
+headers:
+  Accept: "*/*"
+queryParams:
+  type: Premium
+examples: ./.resources/search By Membership Type.resources/examples
+order: 1000

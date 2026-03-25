@@ -1,0 +1,27 @@
+$kind: http-example
+request:
+  url: "{{baseUrl}}/members/:id"
+  method: GET
+  headers:
+    Accept: "*/*"
+  pathVariables:
+    id: "64"
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    Content-Type: "*/*"
+  body:
+    type: text
+    content: |-
+      {
+        "id": 7214,
+        "name": "string",
+        "address": "string",
+        "email": "string",
+        "membershipType": "string",
+        "phoneNumber": "string",
+        "membershipStartDate": "string",
+        "membershipDuration": "string"
+      }
+order: 1000

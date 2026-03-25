@@ -1,0 +1,6 @@
+$kind: http-request
+name: delete Member
+url: "{{baseUrl}}/members/5"
+method: DELETE
+examples: ./.resources/delete Member.resources/examples
+order: 3000

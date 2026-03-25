@@ -1,0 +1,48 @@
+$kind: http-example
+request:
+  url: "{{baseUrl}}/tournaments/:tournamentId/members/:memberId"
+  method: DELETE
+  headers:
+    Accept: "*/*"
+  pathVariables:
+    tournamentId: "64"
+    memberId: "64"
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    Content-Type: "*/*"
+  body:
+    type: text
+    content: |-
+      {
+        "id": 3502,
+        "startDate": "1978-07-07",
+        "endDate": "2018-05-31",
+        "location": "string",
+        "entryFee": 8998.611878625245,
+        "prize": 771.8784770206399,
+        "members": [
+          {
+            "id": 4314,
+            "name": "string",
+            "address": "string",
+            "email": "string",
+            "membershipType": "string",
+            "phoneNumber": "string",
+            "membershipStartDate": "string",
+            "membershipDuration": "string"
+          },
+          {
+            "id": 8710,
+            "name": "string",
+            "address": "string",
+            "email": "string",
+            "membershipType": "string",
+            "phoneNumber": "string",
+            "membershipStartDate": "string",
+            "membershipDuration": "string"
+          }
+        ]
+      }
+order: 1000
