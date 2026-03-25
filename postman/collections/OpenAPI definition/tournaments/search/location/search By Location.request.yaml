@@ -1,0 +1,9 @@
+$kind: http-request
+url: "{{baseUrl}}/tournaments/search/location?location=string"
+method: GET
+headers:
+  Accept: "*/*"
+queryParams:
+  location: string
+examples: ./.resources/search By Location.resources/examples
+order: 1000

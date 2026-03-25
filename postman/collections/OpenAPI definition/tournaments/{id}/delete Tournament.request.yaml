@@ -1,0 +1,7 @@
+$kind: http-request
+url: "{{baseUrl}}/tournaments/:id"
+method: DELETE
+pathVariables:
+  id: "64"
+examples: ./.resources/delete Tournament.resources/examples
+order: 3000

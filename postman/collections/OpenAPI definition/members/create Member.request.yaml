@@ -1,10 +1,10 @@
 $kind: http-request
-name: Create Member
-method: POST
+name: create Member
 url: "{{baseUrl}}/members"
-order: 1000
+method: POST
 headers:
   Content-Type: application/json
+  Accept: "*/*"
 body:
   type: json
   content: |-
@@ -17,3 +17,5 @@ body:
       "membershipStartDate": "2024-01-01",
       "membershipDuration": "12 months"
     }
+examples: ./.resources/create Member.resources/examples
+order: 4000

@@ -1,0 +1,7 @@
+$kind: http-request
+url: "{{baseUrl}}/members"
+method: GET
+headers:
+  Accept: "*/*"
+examples: ./.resources/get All Members.resources/examples
+order: 3000

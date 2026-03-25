@@ -1,0 +1,7 @@
+$kind: http-request
+url: "{{baseUrl}}/tournaments"
+method: GET
+headers:
+  Accept: "*/*"
+examples: ./.resources/get All Tournaments.resources/examples
+order: 4000

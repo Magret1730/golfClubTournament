@@ -1,0 +1,10 @@
+$kind: http-request
+name: search By Phone Number
+url: "{{baseUrl}}/members/search/phone?phone=1234567890"
+method: GET
+headers:
+  Accept: "*/*"
+queryParams:
+  phone: "1234567890"
+examples: ./.resources/search By Phone Number.resources/examples
+order: 1000

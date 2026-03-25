@@ -1,0 +1,10 @@
+$kind: http-request
+name: search By Name
+url: "{{baseUrl}}/members/search/name?name=John"
+method: GET
+headers:
+  Accept: "*/*"
+queryParams:
+  name: John
+examples: ./.resources/search By Name.resources/examples
+order: 1000

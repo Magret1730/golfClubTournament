@@ -1,0 +1,9 @@
+$kind: http-request
+url: "{{baseUrl}}/tournaments/search/date?startDate=1953-05-07"
+method: GET
+headers:
+  Accept: "*/*"
+queryParams:
+  startDate: 1953-05-07
+examples: ./.resources/search By Start Date.resources/examples
+order: 1000

@@ -1,0 +1,22 @@
+$kind: http-request
+name: update Member
+url: "{{baseUrl}}/members/1"
+method: PUT
+headers:
+  Content-Type: application/json
+  Accept: "*/*"
+body:
+  type: json
+  content: |-
+    {
+        "address": "456 Broad Street",
+        "email": "john@example.com",
+        "id": 1,
+        "membershipDuration": "24 months",
+        "membershipStartDate": "2026-03-22",
+        "membershipType": "Gold",
+        "name": "John Doe",
+        "phoneNumber": "1234567890"
+    }
+examples: ./.resources/update Member.resources/examples
+order: 2000
