@@ -308,3 +308,7 @@ A GitHub Action can be added to:
 
 ## 👨‍💻 Author
 Developed by Abiodun Magret Oyedele.
+
+---
+## Swagger Endpoint imported into postman
+http://localhost:8080/v3/api-docs
