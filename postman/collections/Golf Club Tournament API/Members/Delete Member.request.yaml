@@ -1,5 +1,0 @@
-$kind: http-request
-name: Delete Member
-method: DELETE
-url: '{{baseUrl}}/members/{{memberId}}'
-order: 5000

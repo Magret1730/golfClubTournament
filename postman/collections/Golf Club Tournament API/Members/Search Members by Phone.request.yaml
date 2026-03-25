@@ -1,8 +1,0 @@
-$kind: http-request
-name: Search Members by Phone
-method: GET
-url: '{{baseUrl}}/members/search/phone'
-order: 8000
-queryParams:
-  - key: phone
-    value: '555-1234'

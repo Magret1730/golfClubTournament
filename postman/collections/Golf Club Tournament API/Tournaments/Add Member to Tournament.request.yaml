@@ -1,5 +1,0 @@
-$kind: http-request
-name: Add Member to Tournament
-method: POST
-url: '{{baseUrl}}/tournaments/{{tournamentId}}/members/{{memberId}}'
-order: 6000

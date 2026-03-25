@@ -1,5 +1,0 @@
-$kind: http-request
-name: Get All Members
-method: GET
-url: '{{baseUrl}}/members'
-order: 2000
