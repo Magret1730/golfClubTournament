@@ -310,3 +310,14 @@ Developed by **Abiodun Magret Oyedele**
 ```
 http://localhost:8080/v3/api-docs
 ```
+
+## Optional CI/CD
+
+A GitHub Actions workflow is included to:
+
+- build the Docker image
+- push the image to Docker Hub
+- run only when code is merged into the main branch
+
+Workflow file:
+- `.github/workflows/docker-publish.yml`
