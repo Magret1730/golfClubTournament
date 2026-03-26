@@ -10,7 +10,7 @@ This project is a **Spring Boot REST API** that manages:
 
 The system allows users to:
 
-- Create, update, and delete members and tournaments
+- Create, get, update, and delete members and tournaments
 - Add and remove members from tournaments
 - Perform search operations on members and tournaments
 - Run the application using **Docker**
@@ -140,7 +140,19 @@ org.codewithmagret.rest
 
 ## API Testing (Postman)
 
-All endpoints were tested using Postman.
+All endpoints were tested using Postman. Files were imported into postman using `api-docs.yml`.
+A complete Postman collection is included:
+
+```
+/postman
+```
+
+### To use:
+
+1. Open Postman
+2. Import collection from `/postman` folder
+3. Run requests directly
+
 
 ---
 
@@ -160,7 +172,7 @@ Screenshots are organized in the project:
 - Member CRUD operations
 - Tournament CRUD operations
 - Search operations
-- Add member to tournament
+- Add/Delete member to tournament
 - Docker running containers
 - AWS RDS setup and connection
 
@@ -215,13 +227,7 @@ http://localhost:8080
 
 ## Environment Variables
 
-Create a `.env` file (not committed):
-
-```env
-SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/golf_db
-SPRING_DATASOURCE_USERNAME=golf_user
-SPRING_DATASOURCE_PASSWORD=golf_pass
-```
+Create a `.env` file using `.env-example` as a template
 
 ---
 
@@ -229,42 +235,40 @@ SPRING_DATASOURCE_PASSWORD=golf_pass
 
 ### Steps Taken
 
-- Created RDS instance
+- Created EC2 instance for testing connectivity
+- Created MySQL RDS instance
 - Configured DB credentials
 - Updated Spring Boot datasource
 - Allowed inbound access via security groups
 
 ---
 
-### Example Configuration
+### Application Configuration
 
-```properties
-spring.datasource.url=jdbc:mysql://<RDS-ENDPOINT>:3306/golf_db
-spring.datasource.username=your_username
-spring.datasource.password=your_password
-```
+Create `application.properties` file using `application-properties.example` as a template
 
 ---
 
 ## Issues Faced & Solutions
 
-- Docker could not connect to DB  
-  → Fixed by using service name (`db`) instead of `localhost`
+- AWS Connection refused
+  - Fixed by allowing inbound access in security group
 
-- AWS RDS connection timeout  
-  → Fixed by updating security group inbound rules
+- Docker Hub OAUth authentication issues 
+  - Fixed by creating a Personal Access Token and using it for authentication
 
 - JSON infinite recursion  
-  → Fixed using `@JsonIgnore`
+  - Fixed using `@JsonIgnore`
 
-- Duplicate tournaments  
-  → Fixed using `existsByStartDateAndLocation`
+- Issues Faced While Connecting to RDS
+  - Initial connection issues were related to configuration and access setup.
+  - After updating the datasource configuration and verifying connectivity through MySQL Workbench, the application connected successfully.
 
 ---
 
 ## Run Locally (Without Docker)
 
-```bash
+```
 git clone <your-repo-url>
 cd <project-folder>
 ./mvnw spring-boot:run
@@ -280,15 +284,6 @@ cd <project-folder>
 
 ---
 
-## Optional (CI/CD)
-
-GitHub Action can be added to:
-
-- Build Docker image
-- Push to Docker Hub on merge
-
----
-
 ## Deliverables
 
 - GitHub repository
@@ -297,11 +292,6 @@ GitHub Action can be added to:
 - AWS RDS screenshots
 - README documentation
 
----
-
-## Author
-
-Developed by **Abiodun Magret Oyedele**
 
 ---
 
@@ -311,6 +301,21 @@ Developed by **Abiodun Magret Oyedele**
 http://localhost:8080/v3/api-docs
 ```
 
+---
+## CI/CD with GitHub Actions
+
+A GitHub Action is included:
+
+```
+.github/workflows/maven.yml
+```
+
+### What it does:
+
+- Builds the project
+- Runs tests
+- Runs **only when code is pushed to main (after merge)**
+
 ## Optional CI/CD
 
 A GitHub Actions workflow is included to:
@@ -318,6 +323,46 @@ A GitHub Actions workflow is included to:
 - build the Docker image
 - push the image to Docker Hub
 - run only when code is merged into the main branch
+- Secrets used for Docker Hub authentication are stored securely in GitHub Secrets
 
 Workflow file:
 - `.github/workflows/docker-publish.yml`
+
+---
+
+## How I Connected the Application to AWS RDS
+
+As part of the deployment preparation, I moved the application database from a local setup to **AWS MySQL RDS**.
+
+### Steps Taken
+
+1. Created an **EC2 instance** for AWS deployment testing.
+
+2. Created a **MySQL RDS instance**.
+
+3. Retrieved the required database connection details from RDS:
+   - endpoint
+   - username
+   - password
+
+4. Added these values to the project configuration files:
+   - `application.properties`
+   - `.env`
+
+5. Updated the Spring Boot datasource configuration so the application would connect to the RDS instance instead of the local database.
+
+6. Verified the connection by creating a new connection in **MySQL Workbench** using the RDS endpoint and credentials.
+
+7. Built and pushed the Docker image for deployment using:
+
+```
+docker buildx build --platform linux/arm64,linux/amd64 -t <image_name> --push .
+```
+
+8. Ran the application against the RDS-connected configuration, and the database was successfully populated with data.
+
+---
+
+## Author
+
+Developed by **Abiodun Magret Oyedele**
