@@ -1,6 +1,6 @@
-# 🏌️ Golf Club Tournament & Membership API
+# Golf Club Tournament & Membership API
 
-## 📌 Overview
+## Overview
 
 This project is a **Spring Boot REST API** that manages:
 
@@ -18,18 +18,18 @@ The system allows users to:
 
 ---
 
-## 🧱 Tech Stack
+## Tech Stack
 
 - Java 17+
 - Spring Boot
 - Spring Data JPA (Hibernate ORM)
-- MySQL / PostgreSQL
+- MySQL
 - Docker & Docker Compose
 - Maven
 
 ---
 
-## 🗂️ Project Structure
+## Project Structure
 
 ```
 org.codewithmagret.rest
@@ -47,7 +47,7 @@ org.codewithmagret.rest
 
 ---
 
-## 🧩 Data Model
+## Data Model
 
 ### Member
 
@@ -80,61 +80,61 @@ org.codewithmagret.rest
 
 ---
 
-## 🚀 API Endpoints
+## API Endpoints
 
-### 🔹 Members
+### Members
 
-- POST `/members` → Create member
-- GET `/members` → Get all members
-- GET `/members/{id}` → Get member by ID
-- PUT `/members/{id}` → Update member
-- DELETE `/members/{id}` → Delete member
-
----
-
-### 🔹 Member Search
-
-- GET `/members/search/name?name=` → Search by name
-- GET `/members/search/type?type=` → Search by membership type
-- GET `/members/search/phone?phone=` → Search by phone number
-- GET `/members/search/tournament-date?startDate=` → Search by tournament start date
+- POST `/members`
+- GET `/members`
+- GET `/members/{id}`
+- PUT `/members/{id}`
+- DELETE `/members/{id}`
 
 ---
 
-### 🔹 Tournaments
+### Member Search
 
-- POST `/tournaments` → Create tournament
-- GET `/tournaments` → Get all tournaments
-- GET `/tournaments/{id}` → Get tournament by ID
-- PUT `/tournaments/{id}` → Update tournament
-- DELETE `/tournaments/{id}` → Delete tournament
-
----
-
-### 🔹 Tournament Search
-
-- GET `/tournaments/search/date?startDate=` → Search by start date
-- GET `/tournaments/search/location?location=` → Search by location
-- GET `/tournaments/search/member/{memberId}` → Search by member
+- GET `/members/search/name?name=`
+- GET `/members/search/type?type=`
+- GET `/members/search/phone?phone=`
+- GET `/members/search/tournament-date?startDate=`
 
 ---
 
-### 🔹 Relationship Endpoints
+### Tournaments
 
-- POST `/tournaments/{tournamentId}/members/{memberId}` → Add member to tournament
-- DELETE `/tournaments/{tournamentId}/members/{memberId}` → Remove member from tournament
+- POST `/tournaments`
+- GET `/tournaments`
+- GET `/tournaments/{id}`
+- PUT `/tournaments/{id}`
+- DELETE `/tournaments/{id}`
 
 ---
 
-## ⚠️ Business Rules
+### Tournament Search
+
+- GET `/tournaments/search/date?startDate=`
+- GET `/tournaments/search/location?location=`
+- GET `/tournaments/search/member/{memberId}`
+
+---
+
+### Relationship Endpoints
+
+- POST `/tournaments/{tournamentId}/members/{memberId}`
+- DELETE `/tournaments/{tournamentId}/members/{memberId}`
+
+---
+
+## Business Rules
 
 - A tournament **cannot be created** if one already exists with the same:
-    - startDate
-    - location
+  - startDate
+  - location
 
-- This is enforced using:
-    - Service-level validation
-    - Database-level unique constraint
+- Enforced using:
+  - Service-level validation
+  - Database unique constraint
 
 ---
 
@@ -142,22 +142,31 @@ org.codewithmagret.rest
 
 All endpoints were tested using Postman.
 
-### Required Screenshots (included in submission)
+---
 
-- Create Member
-- Get Members
-- Create Tournament
-- Add Member to Tournament
-- Search Members
-- Search Tournaments
-- Update Member
-- Update Tournament
-- Delete Member
-- Delete Tournament
+## Screenshots
+
+Screenshots are organized in the project:
+
+```
+/screenshots
+├── postman
+├── docker
+├── aws
+```
+
+### Includes:
+
+- Member CRUD operations
+- Tournament CRUD operations
+- Search operations
+- Add member to tournament
+- Docker running containers
+- AWS RDS setup and connection
 
 ---
 
-# Swagger Documentation
+## Swagger Documentation
 
 After starting the application:
 
@@ -169,18 +178,19 @@ http://localhost:8080/swagger
 
 ## API Documentation
 
-Full Javadoc documentation can be found here:
-
-[View Javadoc Documentation](https://magret1730.github.io/golfClubTournament/)
+Full Javadoc documentation:
+```
+https://magret1730.github.io/golfClubTournament/
+```
 
 ---
 
 ## Running with Docker
 
-### Step 1: Build and Run
+### Step 1: Run the application
 
-```bash
-docker-compose up --build
+```
+docker compose up --build
 ```
 
 ### Step 2: Access API
@@ -191,28 +201,26 @@ http://localhost:8080
 
 ---
 
-## Example docker-compose.yml
+## Docker Notes
 
-```
-version: "3.8"
+- The project includes both:
+  - Application container
+  - Database container
 
-services:
-  db:
-    image: mysql:8
-    container_name: golf-db
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: golf_db
-    ports:
-      - "3306:3306"
+- No manual database setup is required
 
-  app:
-    build: .
-    container_name: golf-api
-    depends_on:
-      - db
-    ports:
-      - "8080:8080"
+- Another developer can run the project with **one command**
+
+---
+
+## Environment Variables
+
+Create a `.env` file (not committed):
+
+```env
+SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/golf_db
+SPRING_DATASOURCE_USERNAME=golf_user
+SPRING_DATASOURCE_PASSWORD=golf_pass
 ```
 
 ---
@@ -221,9 +229,9 @@ services:
 
 ### Steps Taken
 
-- Created RDS instance (MySQL/PostgreSQL)
-- Configured database name, username, and password
-- Updated Spring Boot configuration
+- Created RDS instance
+- Configured DB credentials
+- Updated Spring Boot datasource
 - Allowed inbound access via security groups
 
 ---
@@ -238,77 +246,67 @@ spring.datasource.password=your_password
 
 ---
 
-## ⚠️ Issues Faced
+## Issues Faced & Solutions
 
-- Connection timeout due to security group restrictions
-- Fixed by allowing inbound access from local machine
+- Docker could not connect to DB  
+  → Fixed by using service name (`db`) instead of `localhost`
 
----
+- AWS RDS connection timeout  
+  → Fixed by updating security group inbound rules
 
-## 📸 Deployment Evidence
+- JSON infinite recursion  
+  → Fixed using `@JsonIgnore`
 
-Screenshots included:
-
-- RDS instance creation
-- Database connection
-- Application running in Docker
-- API responses in Postman
+- Duplicate tournaments  
+  → Fixed using `existsByStartDateAndLocation`
 
 ---
 
-## 🛠️ How to Run Locally
-
-1. Clone the repository:
+## Run Locally (Without Docker)
 
 ```bash
 git clone <your-repo-url>
 cd <project-folder>
-```
-
-2. Run the application:
-
-```bash
 ./mvnw spring-boot:run
 ```
 
-3. Access API:
-
-```
-http://localhost:8080
-```
-
 ---
 
-## 📌 Notes
+## Notes
 
 - Dates use ISO format: `YYYY-MM-DD`
-- JSON recursion handled using `@JsonIgnore`
-- Many-to-many relationship properly synchronized in service layer
+- Many-to-many relationship handled properly
+- Clean layered architecture used (Controller → Service → Repository)
 
 ---
 
-## 🎯 Optional (CI/CD)
+## Optional (CI/CD)
 
-A GitHub Action can be added to:
+GitHub Action can be added to:
 
 - Build Docker image
-- Push to Docker Hub on merge to main
+- Push to Docker Hub on merge
 
 ---
 
-## 📎 Deliverables
+## Deliverables
 
-- GitHub repository link
+- GitHub repository
 - Postman screenshots
-- Docker running screenshot
-- AWS RDS setup screenshots
+- Docker screenshot
+- AWS RDS screenshots
 - README documentation
 
 ---
 
-## 👨‍💻 Author
-Developed by Abiodun Magret Oyedele.
+## Author
+
+Developed by **Abiodun Magret Oyedele**
 
 ---
-## Swagger Endpoint imported into postman
+
+## Swagger JSON
+
+```
 http://localhost:8080/v3/api-docs
+```
